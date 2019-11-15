@@ -1,1 +1,1 @@
-include ':app', ':arch', ':ui', ':recycleview'
+include ':app', ':arch', ':page', ':recycleview'
