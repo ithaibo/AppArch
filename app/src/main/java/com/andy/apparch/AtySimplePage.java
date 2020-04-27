@@ -1,18 +1,19 @@
 package com.andy.apparch;
 
 import android.os.Bundle;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.andy.ui.recycler.SimpleTypeAdapter;
+import com.andy.ui.recycler.TypedAdapter;
 
 import java.util.List;
 
 public abstract class AtySimplePage<T> extends AtyPage<List<T>> {
 
-    SimpleTypeAdapter<T> adapter;
+    TypedAdapter<T> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

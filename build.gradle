@@ -2,9 +2,10 @@
 
 buildscript {
     repositories {
-        google()
-        jcenter()
-        maven {url 'https://raw.githubusercontent.com/ithaibo/MavenRepository/master'}
+        maven{url 'https://maven.aliyun.com/repository/google'}
+        maven{url 'https://maven.aliyun.com/repository/jcenter'}
+        maven {url "file://$MAVEN_DIR/snapshot"}
+        maven {url "file://$MAVEN_DIR/release"}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
@@ -16,9 +17,10 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
-        maven {url 'https://raw.githubusercontent.com/ithaibo/MavenRepository/master'}
+        maven{url 'https://maven.aliyun.com/repository/google'}
+        maven{url 'https://maven.aliyun.com/repository/jcenter'}
+        maven {url "file://$MAVEN_DIR/snapshot"}
+        maven {url "file://$MAVEN_DIR/release"}
     }
 }
 
