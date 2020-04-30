@@ -1,9 +1,9 @@
 package com.andy.arch.rxjava;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.andy.arch.viewmodel.ClearViewModel;
 
@@ -18,11 +18,11 @@ public abstract class AutoReleaseSingleObserver<T> implements SingleObserver<T> 
     }
 
     public AutoReleaseSingleObserver(Fragment fragment, @NonNull Class<? extends ClearViewModel> clearVM) {
-        viewModel = ViewModelProviders.of(fragment).get(clearVM);
+        viewModel = new ViewModelProvider(fragment).get(clearVM);
     }
 
     public AutoReleaseSingleObserver(FragmentActivity fragmentActivity, @NonNull Class<? extends ClearViewModel> clearVM) {
-        viewModel = ViewModelProviders.of(fragmentActivity).get(clearVM);
+        viewModel = new ViewModelProvider(fragmentActivity).get(clearVM);
     }
 
     @Override
