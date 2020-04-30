@@ -1,5 +1,7 @@
 package com.andy.ui.recycler;
 
-public interface ViewTypeConverter {
-    int getTypeByPosition(int position);
+import androidx.annotation.NonNull;
+
+public interface ViewTypeConverter<T> {
+    int getTypeByPosition(@NonNull T item, int position);
 }

@@ -13,15 +13,18 @@ import java.util.List;
 public class TypedAdapter<T> extends HeaderFooterAdapter {
     private final HolderFactory holderFactory;
     private final HolderBinder<T, RecyclerView.ViewHolder> holderBinder;
-    private ViewTypeConverter viewTypeConverter;
+    private ViewTypeConverter<T> viewTypeConverter;
     private final List<T> dataList = new LinkedList<>();
 
-    public TypedAdapter(HolderFactory holderFactory, HolderBinder<T, RecyclerView.ViewHolder> holderBinder) {
+    public TypedAdapter(HolderFactory holderFactory,
+                        HolderBinder<T, RecyclerView.ViewHolder> holderBinder) {
         this.holderFactory = holderFactory;
         this.holderBinder = holderBinder;
     }
 
-    public TypedAdapter(HolderFactory holderFactory, HolderBinder<T, RecyclerView.ViewHolder> holderBinder, ViewTypeConverter viewTypeConverter) {
+    public TypedAdapter(HolderFactory holderFactory,
+                        HolderBinder<T, RecyclerView.ViewHolder> holderBinder,
+                        ViewTypeConverter<T> viewTypeConverter) {
         this.holderFactory = holderFactory;
         this.holderBinder = holderBinder;
         this.viewTypeConverter = viewTypeConverter;
@@ -45,7 +48,7 @@ public class TypedAdapter<T> extends HeaderFooterAdapter {
             return this;
         }
 
-        public Builder<V> setViewTypeConverter(ViewTypeConverter viewTypeConverter) {
+        public Builder<V> setViewTypeConverter(ViewTypeConverter<V> viewTypeConverter) {
             this.viewTypeConverter = viewTypeConverter;
             return this;
         }
@@ -64,7 +67,9 @@ public class TypedAdapter<T> extends HeaderFooterAdapter {
     }
 
     @Override
-    protected void bindDataHolder(RecyclerView.ViewHolder holder, int itemPosition, int dataPosition) {
+    protected void bindDataHolder(RecyclerView.ViewHolder holder,
+                                  int itemPosition,
+                                  int dataPosition) {
         if (null != holderBinder) {
             holderBinder.bind(holder, dataPosition, getItem(dataPosition));
         }
@@ -152,7 +157,11 @@ public class TypedAdapter<T> extends HeaderFooterAdapter {
 
     @Override
     protected int getDataItemType(int position) {
-        if (null == this.viewTypeConverter) return super.getDataItemType(position);
-        return this.viewTypeConverter.getTypeByPosition(position - getHeaderCount());
+        if (null == this.viewTypeConverter) {
+            return super.getDataItemType(position);
+        }
+        return this.viewTypeConverter
+                .getTypeByPosition(getItem(position),
+                        position - getHeaderCount());
     }
 }
