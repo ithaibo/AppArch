@@ -51,19 +51,14 @@ public abstract class PresenterPage<T> implements PageContract.Presenter {
 
                 if (null == t || isDataEmpty(t)) {
                     if (isFirstPage()) {
-                        view.onResultEmpty(getFirstPageIndex());
+                        view.onResultEmpty();
                     } else {
                         view.onNoMoreData();
                     }
                     return;
                 }
-
+                view.onPageDataReady(t, page);
                 final boolean loadCompleted = isLoadCompleted(t);
-                if (isFirstPage()) {
-                    view.onFirstPageDataReady(t);
-                } else {
-                    view.onMoreDataReady(t);
-                }
                 if (loadCompleted) {
                     view.onNoMoreData();
                     view.updateLoadMoreEnable(false);
@@ -80,14 +75,28 @@ public abstract class PresenterPage<T> implements PageContract.Presenter {
     };
 
     @Override
-    public final void requestFirstPage() {
+    public void fetchPageData(int page) {
+        assertPageValid(page);
+        tempPage = page;
+        requestData(tempPage).observe(lifecycleOwner, observer);
+    }
+
+    private void assertPageValid(int page) {
+        if (page < getFirstPageIndex()) {
+            throw new IllegalArgumentException("page must >= " + getFirstPageIndex());
+        }
+    }
+
+    @Override
+    public void fetchFirstPage() {
         tempPage = getFirstPageIndex();
         requestData(tempPage).observe(lifecycleOwner, observer);
     }
 
     @Override
-    public final void requestNextPage() {
+    public void fetchNextPage() {
         tempPage = page + 1;
+        requestData(tempPage).observe(lifecycleOwner, observer);
     }
 
     /**

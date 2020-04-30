@@ -7,12 +7,10 @@ import androidx.annotation.NonNull;
  */
 public interface PageContract {
     interface View<T> {
-        /**首页数据*/
-        void onFirstPageDataReady(@NonNull T firstPage);
-        /**加载更多数据*/
-        void onMoreDataReady(@NonNull T otherPage);
+        /**页数据请求成功回调*/
+        void onPageDataReady(@NonNull T data, int pageIndex);
         /**数据为空*/
-        void onResultEmpty(int pageIndex);
+        void onResultEmpty();
         /**数据请求失败*/
         <E> void onRequestError(@NonNull E error, int pageIndex);
         /**更新加载更多的状态*/
@@ -21,19 +19,8 @@ public interface PageContract {
         void onNoMoreData();
     }
     interface Presenter {
-        /**
-         * 请求首页数据
-         */
-        void requestFirstPage();
-
-        /**
-         * 请求下一页数据
-         */
-        void requestNextPage();
-
-        /**
-         * @return 当前是否为第一页
-         */
-        boolean isFirstPage();
+        void fetchPageData(int page);
+        void fetchNextPage();
+        void fetchFirstPage();
     }
 }
