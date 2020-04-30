@@ -1,1 +1,1 @@
-include ':app', ':arch', ':page', ':recycleview'
+include ':app', ':viewmode', ':page', ':recycleview'

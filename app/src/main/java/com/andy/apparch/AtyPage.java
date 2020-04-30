@@ -18,10 +18,10 @@ public abstract class AtyPage<T> extends AppCompatActivity implements PageContra
     protected abstract PageContract.Presenter getPresenter();
 
     protected void onRefresh() {
-        getPresenter().requestFirstPage();
+        getPresenter().fetchFirstPage();
     }
 
     protected void onLoadMore() {
-        getPresenter().requestNextPage();
+        getPresenter().fetchNextPage();
     }
 }
