@@ -114,6 +114,10 @@ abstract class HeaderFooterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public abstract int getDataItemCount();
 
+    public void addHeaderView(@NonNull View headerView, boolean notify) {
+        addHeaderView(TYPE_HEADER, headerView, notify);
+    }
+
     public void addHeaderView(int type, @NonNull View headerView, boolean notify) {
         if (type < TYPE_HEADER || type >= TYPE_DATA) {
             throw new IllegalArgumentException("header type must be in [8,32)");
@@ -167,6 +171,9 @@ abstract class HeaderFooterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return footerViews.size();
     }
 
+    public void addFooterView(@NonNull View footerView, boolean notify) {
+        addFooterView(TYPE_FOOTER, footerView, notify);
+    }
     public void addFooterView(int type, @NonNull View footerView, boolean notify) {
         if (type < TYPE_FOOTER) {
             throw new IllegalArgumentException("footer type must be equals or big than 32");

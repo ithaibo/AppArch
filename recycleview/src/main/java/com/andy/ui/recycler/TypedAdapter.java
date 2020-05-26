@@ -101,14 +101,15 @@ public class TypedAdapter<T> extends HeaderFooterAdapter {
 
         this.dataList.addAll(dataList);
         updateItemCount();
+        int headerCount = getHeaderCount();
         if (sizeBefore == sizeNow) {
-            notifyItemRangeChanged(getHeaderCount(), sizeNow);
+            notifyItemRangeChanged(headerCount, sizeNow);
         } else if (sizeBefore > sizeNow) {
-            notifyItemRangeChanged(getHeaderCount(), sizeNow);
-            notifyItemMoved(sizeNow, sizeBefore);
+            notifyItemRangeChanged(headerCount, sizeNow);
+            notifyItemRangeRemoved(headerCount + sizeNow, sizeBefore);
         } else {
-            notifyItemRangeChanged(getHeaderCount(), sizeBefore);
-            notifyItemRangeInserted(sizeBefore, sizeNow - sizeBefore);
+            notifyItemRangeChanged(headerCount, sizeBefore);
+            notifyItemRangeInserted(headerCount + sizeBefore, sizeNow - sizeBefore);
         }
     }
 
