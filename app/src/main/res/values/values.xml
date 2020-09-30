@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StackBgView">
+        <attr name="stackSize" format="integer"/>
+        <attr name="bgDrawable" format="reference"/>
+        <attr name="bgWidth" format="dimension"/>
+        <attr name="bgHeight" format="dimension"/>
+        <attr name="bgOff" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="ClipImageView">
+        <attr name="leftTopRadius" format="dimension"/>
+        <attr name="rightTopRadius" format="dimension"/>
+        <attr name="rightBottomRadius" format="dimension"/>
+        <attr name="leftBottomRadius" format="dimension"/>
+    </declare-styleable>
+</resources>

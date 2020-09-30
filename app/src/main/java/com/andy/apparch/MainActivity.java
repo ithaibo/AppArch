@@ -9,6 +9,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.andy.apparch.demos.StackImgDemo;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,5 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void toDemoList(View view) {
         startActivity(new Intent(this, DemoList.class));
+    }
+
+    public void stackBg(View view) {
+        startActivity(new Intent(this, StackImgDemo.class));
     }
 }
