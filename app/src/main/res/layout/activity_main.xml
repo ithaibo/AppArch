@@ -17,12 +17,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        app:layout_constraintTop_toBottomOf="@id/demo_list"
-        android:text="stack background image"
-        android:onClick="stackBg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <com.andy.apparch.demos.ClipImageView
         app:layout_constraintLeft_toLeftOf="parent"

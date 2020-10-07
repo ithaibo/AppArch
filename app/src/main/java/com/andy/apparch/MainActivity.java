@@ -3,13 +3,10 @@ package com.andy.apparch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.andy.apparch.demos.StackImgDemo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +28,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void toDemoList(View view) {
         startActivity(new Intent(this, DemoList.class));
-    }
-
-    public void stackBg(View view) {
-        startActivity(new Intent(this, StackImgDemo.class));
     }
 }
